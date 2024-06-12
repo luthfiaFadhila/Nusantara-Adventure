@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulau</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap');
+      @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+      
+      body {
+          background-image: url('https://i.pinimg.com/564x/b8/45/bf/b845bf3d417628ce6cd0056045773a18.jpg');
+          margin: 0;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+          display: flex;
+          flex-direction: column;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          color: #fff;
+          align-items: center;
+      }
+      
+      h1 {
+          font-family: 'Berkshire Swash', cursive;
+          color: #8b4513;
+          font-size: 3em;
+          margin-bottom: 20px;
+          text-align: center;
+          text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+      }
+      
+      .Materi {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 20px;
+        justify-items: center;
+        width: 90%;
+        max-width: 1200px;
+      }
+  
+      .Materi-item {
+        width: 100%;
+        max-width: 200px;
+        text-align: center;
+        transition: transform 0.3s ease; 
+        position: relative;
+        margin: 5px 0;
+      }
+  
+      .Materi-item:hover {
+        transform: scale(1.05);
+      }
+  
+      .Materi-item img {
+        width: 200px; 
+        height: 140px; 
+        border-radius: 15px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        object-fit: cover; 
+      }
+  
+      .button {
+          background-color: rgba(255, 239, 213, 0.9);
+          border: 2px solid #8b4513;
+          border-radius: 10px;
+          color: #8b4513;
+          font-size: 1.2em;
+          font-family: 'Berkshire Swash', cursive;
+          margin: 10px 0;
+          padding: 10px 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+          transition: background-color 0.3s, color 0.3s;
+      }
+  
+      .button:hover {
+          background-color: bisque;
+          color: #8b4513;
+      }
+  
+      .kembali-btn {
+          position: absolute;
+          top: 20px;
+          left: 20px;
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          padding: 10px;
+          background: linear-gradient(135deg, #8b4513, #d2691e); 
+          color: #fff;
+          border: 2px solid  #8b4513;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          z-index: 999;
+          box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+  
+      .kembali-btn:hover {
+        transform: scale(1.1);
+        background: linear-gradient(135deg, #d2691e, #8b4513); 
+      }
+  
+      .kembali-btn i {
+        font-size: 2em;
+      }
+      
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Pulau</h1>
+    </header>
+  
+  <main>
+    <section class="Materi">
+      <div class="Materi-item">
+        <img src="https://i.pinimg.com/736x/b5/b5/94/b5b594b393f865178dd6b0f74ff65713.jpg" alt="Produk 5">
+        <a href="Materi.html" class="button">Jawa</a>
+      </div>
+      <div class="Materi-item">
+        <img src="https://i.pinimg.com/736x/00/1d/2e/001d2e357cc549dce16c57dc2963129b.jpg" alt="Produk 2">
+        <a href="Materi.html" class="button">Kalimantan</a>
+      </div>
+      <div class="Materi-item">
+        <img src="https://i.pinimg.com/736x/2a/27/17/2a2717b3519b0e1326da4a260822f93f.jpg" alt="Produk 3">
+        <a href="Materi.html" class="button">Sumatera</a>
+      </div>
+      <div class="Materi-item">
+        <img src="https://i.pinimg.com/736x/22/78/cd/2278cd66c631b32ead57789831c0ece8.jpg" alt="Produk 4">
+        <a href="Materi.html" class="button">Sulawesi</a>
+      </div>
+      <div class="Materi-item">
+        <img src="https://i.pinimg.com/736x/67/67/4b/67674bb66a177c7639a9252b329350ea.jpg" alt="Produk 4">
+        <a href="Materi.html" class="button">NTB</a>
+      </div>
+      <div class="Materi-item">
+        <img src="https://i.pinimg.com/736x/59/c8/48/59c84865408cb3f82d901a656158ec34.jpg" alt="Produk 4">
+        <a href="Materi.html" class="button">Papua</a>
+      </div>
+      
+    </section>
+  </main>
+
+  <a href="Home.html"><button class="kembali-btn"><i class="fas fa-arrow-left"></i></button></a>
+  
+  
+</body>
+</html>
