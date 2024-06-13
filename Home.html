@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nusantara Adventure</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap');
+        
+        body {
+            background-image: url('https://i.pinimg.com/564x/b8/45/bf/b845bf3d417628ce6cd0056045773a18.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            color: #2c3e50;
+        }
+        h1 {
+            font-family: 'Berkshire Swash', cursive;
+            color: #8b4513;
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+        }
+        .button {
+            background-color: rgba(255, 239, 213, 0.9);
+            border: 2px solid #8b4513;
+            border-radius: 10px;
+            color: #8b4513;
+            font-size: 1.5em;
+            font-family: 'Berkshire Swash', cursive;
+            margin: 10px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            width: 200px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease; /* Transisi untuk animasi */
+        }
+        .button:hover {
+            background-color: bisque;
+            color: #8b4513;
+            transform: scale(1.05);
+        }
+        .button, h1 {
+            animation: pulse 1s infinite; /* Animasi saat audio sedang dimainkan */
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Nusantara Adventure</h1>
+    <a href="Pulau.html" class="button">Materi</a>
+    <a href="Play.html" class="button">Play</a>
+    <a href="About.html" class="button">About</a>
+    
+    
+    
+    </body>
+    </html>
+    
+</body>
+</html>
