@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+body {
+    background-image: url('https://i.pinimg.com/564x/b8/45/bf/b845bf3d417628ce6cd0056045773a18.jpg');
+    margin: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+}
+
+h1, h2, h3, p {
+    color: #8b4513; 
+}
+
+h1 {
+    font-family: 'Berkshire Swash', cursive;
+    font-size: 2.5em;  
+    margin-bottom: 10px;  
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 700px;
+    padding: 20px;
+    background: rgba(255, 239, 213, 0.8);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+#status {
+    margin-top: 10px;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    width: 100%;
+    color: #8b4513;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-gap: 10px;
+    margin-top: 20px;
+}
+
+.card {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    background: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s;
+    position: relative;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    display: none;
+}
+
+.card.flipped img {
+    display: block;
+}
+
+.card.flipped {
+    background: white;
+    transform: rotateY(180deg);
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background: linear-gradient(135deg, #8b4513, #d2691e);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: linear-gradient(135deg,)
+}
+
+.kembali-btn {
+    position: absolute;
+    top: 10px;  
+    left: 10px;  
+    width: 50px;  
+    height: 50px; 
+    border-radius: 50%;
+    padding: 5px;  
+    background: linear-gradient(135deg, #8b4513, #d2691e);
+    color: #fff;
+    border: 2px solid #8b4513;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 999;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.kembali-btn:hover {
+    transform: scale(1.1);
+    background: linear-gradient(135deg, #d2691e, #8b4513);
+}
+
+.kembali-btn i {
+    font-size: 1.5em;  
+}
+
+.button, .kembali-btn, .Materi-item, h1 {
+    animation: pulse 1s infinite; /* Animasi saat audio sedang dimainkan */
+}
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
