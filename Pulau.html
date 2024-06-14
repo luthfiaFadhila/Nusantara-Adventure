@@ -4,112 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pulau</title>
+    <link rel="stylesheet" href="styleUtama.css">
+    <link rel="stylesheet" href="styleMateri.css">
+    <link rel="stylesheet" href="styleButton.css">
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap');
-      @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
-      
-      body {
-          background-image: url('https://i.pinimg.com/564x/b8/45/bf/b845bf3d417628ce6cd0056045773a18.jpg');
-          margin: 0;
-          background-size: cover;
-          background-repeat: no-repeat;
-          background-position: center;
-          display: flex;
-          flex-direction: column;
-          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-          color: #fff;
-          align-items: center;
-      }
-      
-      h1 {
-          font-family: 'Berkshire Swash', cursive;
-          color: #8b4513;
-          font-size: 3em;
-          margin-bottom: 20px;
-          text-align: center;
-          text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
-      }
-      
-      .Materi {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: 20px;
-        justify-items: center;
-        width: 90%;
-        max-width: 1200px;
-      }
-  
-      .Materi-item {
-        width: 100%;
-        max-width: 200px;
-        text-align: center;
-        transition: transform 0.3s ease; 
-        position: relative;
-        margin: 5px 0;
-      }
-  
-      .Materi-item:hover {
-        transform: scale(1.05);
-      }
-  
-      .Materi-item img {
-        width: 200px; 
-        height: 140px; 
-        border-radius: 15px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        object-fit: cover; 
-      }
-  
-      .button {
-          background-color: rgba(255, 239, 213, 0.9);
-          border: 2px solid #8b4513;
-          border-radius: 10px;
-          color: #8b4513;
-          font-size: 1.2em;
-          font-family: 'Berkshire Swash', cursive;
-          margin: 10px 0;
-          padding: 10px 20px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-          transition: background-color 0.3s, color 0.3s;
-      }
-  
-      .button:hover {
-          background-color: bisque;
-          color: #8b4513;
-      }
-  
-      .kembali-btn {
-          position: absolute;
-          top: 20px;
-          left: 20px;
-          width: 60px;
-          height: 60px;
-          border-radius: 50%;
-          padding: 10px;
-          background: linear-gradient(135deg, #8b4513, #d2691e); 
-          color: #fff;
-          border: 2px solid  #8b4513;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          z-index: 999;
-          box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-      }
-  
-      .kembali-btn:hover {
-        transform: scale(1.1);
-        background: linear-gradient(135deg, #d2691e, #8b4513); 
-      }
-  
-      .kembali-btn i {
-        font-size: 2em;
-      }
-      
+          .Materi {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 20px;
+      justify-items: center;
+      width: 90%;
+      max-width: 1200px;
+    }
+
+
     </style>
 </head>
 <body>
@@ -149,6 +57,9 @@
 
   <a href="Home.html"><button class="kembali-btn"><i class="fas fa-arrow-left"></i></button></a>
   
+  <audio id="hover-sound" src="pick-92276.mp3"></audio>
+    
+  <script src="audio.js"></script>
   
 </body>
 </html>

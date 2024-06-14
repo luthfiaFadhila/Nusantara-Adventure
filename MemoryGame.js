@@ -1,3 +1,4 @@
+
 const levels = [
     [
         'https://i.pinimg.com/564x/2c/d0/76/2cd076de1e3f4de5aa86ea506656496d.jpg',
@@ -22,7 +23,6 @@ const levels = [
         'https://i.pinimg.com/564x/8d/d6/9e/8dd69e80c1e431064cca037f4c80d3c0.jpg',
         'https://i.pinimg.com/564x/6e/32/7d/6e327d3e65df63d56866dfb3282fb34a.jpg',
         'https://i.pinimg.com/564x/2c/d0/76/2cd076de1e3f4de5aa86ea506656496d.jpg',
-
     ]
 ];
 
@@ -38,6 +38,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const nextLevelButton = document.getElementById('nextLevelButton');
     const levelElement = document.getElementById('level');
     const scoreElement = document.getElementById('score');
+    const flipSound = document.getElementById('flipSound');
+    const matchSound = document.getElementById('matchSound');
 
     function createBoard(level) {
         const images = [...levels[level], ...levels[level]];
@@ -68,6 +70,8 @@ document.addEventListener("DOMContentLoaded", function() {
         if (this === firstCard) return;
 
         this.classList.add('flipped');
+        flipSound.currentTime = 0;
+        flipSound.play();
 
         if (!hasFlippedCard) {
             hasFlippedCard = true;
@@ -82,6 +86,8 @@ document.addEventListener("DOMContentLoaded", function() {
     function checkForMatch() {
         if (firstCard.dataset.image === secondCard.dataset.image) {
             disableCards();
+            matchSound.currentTime = 0;
+            matchSound.play();
             score += 10;
             scoreElement.textContent = score;
             if (checkIfLevelComplete()) {
@@ -100,12 +106,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function unflipCards() {
         lockBoard = true;
+        const wrongSound = document.getElementById('wrongSound');
+        wrongSound.currentTime = 0;
+        wrongSound.play();
         setTimeout(() => {
             firstCard.classList.remove('flipped');
             secondCard.classList.remove('flipped');
             resetBoard();
         }, 1000);
     }
+    
 
     function resetBoard() {
         [hasFlippedCard, lockBoard] = [false, false];
@@ -113,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function checkIfLevelComplete() {
-        return document.querySelectorAll('.card:not(.flipped)').length === 0;
+        return document.querySelectorAll('.card:not(.flipped)').length === 0
     }
 
     function nextLevel() {

@@ -132,7 +132,7 @@ button:hover {
 }
 
 .button, .kembali-btn, .Materi-item, h1 {
-    animation: pulse 1s infinite; /* Animasi saat audio sedang dimainkan */
+    animation: pulse 1s infinite; 
 }
 @keyframes pulse {
     0% { transform: scale(1); }
