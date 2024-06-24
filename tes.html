@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+    <link rel="stylesheet" href="MemoryGame.css">
+    <link rel="stylesheet" href="styleButton.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+        body {
+            background-image: url('https://i.pinimg.com/564x/b8/45/bf/b845bf3d417628ce6cd0056045773a18.jpg');
+            margin: 0;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            align-items: center;
+            height: 100vh;
+            justify-content: center;
+        }
+
+        h1, h2, h3, p {
+            color: #8b4513; 
+        }
+
+        h1 {
+            font-family: 'Berkshire Swash', cursive;
+            font-size: 2.5em;  
+            margin-bottom: 10px;  
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 700px;
+            padding: 20px;
+            background: rgba(255, 239, 213, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        #status {
+            margin-top: 10px;
+            font-size: 18px;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            width: 100%;
+            color: #8b4513;
+        }
+
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            grid-gap: 10px;
+            margin-top: 20px;
+        }
+
+        .card {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            background: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .card.flipped img {
+            display: block;
+        }
+
+        .card.flipped {
+            background: white;
+            transform: rotateY(180deg);
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background: linear-gradient(135deg, #8b4513, #d2691e);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #d2691e, #8b4513);
+        }
+    </style>
+</head>
+<body>
+    <a href="Play.html"><button class="kembali-btn"><i class="fas fa-arrow-left"></i></button></a>
+    <div class="game-container">
+        <h1>Memory Game</h1>
+        <div id="status">
+            <span>Level: <span id="level">1</span></span>
+            <span>Score: <span id="score">0</span></span>
+        </div>
+        <div class="game-board" id="gameBoard">
+        </div>
+        <table>
+            <td><button id="resetButton">Restart Game</button></td>
+            <td><button id="nextLevelButton">Next Level</button></td>
+        </table>
+    </div>
+    <script src="MemoryGame.js"></script>
+    <audio id="flipSound" src="pick-92276.mp3"></audio>
+    <audio id="matchSound" src="correct-6033.mp3"></audio>
+    <audio id="wrongSound" src="buzzer-or-wrong-answer-20582.mp3"></audio>
+    <script src="audio.js"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBBQR1TWrTVHgMSUjKyHlsYK03CINsLU0w",
+            authDomain: "score-game-f5b85.firebaseapp.com",
+            projectId: "score-game-f5b85",
+            storageBucket: "score-game-f5b85.appspot.com",
+            messagingSenderId: "925304607629",
+            appId: "1:925304607629:web:2614ab7d0630707a87a3c4"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const levels = [
+            [
+                'https://i.pinimg.com/564x/2c/d0/76/2cd076de1e3f4de5aa86ea506656496d.jpg',
+                'https://i.pinimg.com/564x/47/5b/f9/475bf96866c10d79a1d244bea2c84e06.jpg',
+                'https://i.pinimg.com/564x/d2/ca/e1/d2cae1236d9b8e684b4a7cf65f8be46f.jpg',
+                'https://i.pinimg.com/564x/a8/ee/46/a8ee46db1a0483d7d8438c938d9b7afc.jpg',
+            ],
+            [
+                'https://i.pinimg.com/564x/cb/ab/36/cbab3668111326924649e6214dae92e1.jpg',
+                'https://i.pinimg.com/564x/eb/98/9e/eb989e824ff06ee2d403873e4964ff72.jpg',
+                'https://i.pinimg.com/564x/8d/d6/9e/8dd69e80c1e431064cca037f4c80d3c0.jpg',
+                'https://i.pinimg.com/564x/6e/32/7d/6e327d3e65df63d56866dfb3282fb34a.jpg',
+                'https://i.pinimg.com/564x/1d/86/a7/1d86a7742e95c493bd22a0ebcfe4c3a6.jpg',
+                'https://i.pinimg.com/736x/80/63/8a/80638aef5495c6427e56b16d10d0b0ac.jpg'
+            ],
+            [
+                'https://i.pinimg.com/564x/e8/97/3f/e8973f5d2ad973affccc127ca8e5a741.jpg',
+                'https://i.pinimg.com/564x/b5/e5/9e/b5e59e7c698a0a6f94ac71e8edcb86ea.jpg',
+                'https://i.pinimg.com/564x/fc/ef/20/fcef207c38b18647b396d3ebe707819f.jpg',
+                'https://i.pinimg.com/564x/da/9c/54/da9c54bcea7b444f8f600b4c192002cd.jpg',
+                'https://i.pinimg.com/564x/2b/d2/a0/2bd2a022761cfaf540720090ae6459ff.jpg',
+                'https://i.pinimg.com/564x/8d/d6/9e/8dd69e80c1e431064cca037f4c80d3c0.jpg',
+                'https://i.pinimg.com/564x/6e/32/7d/6e327d3e65df63d56866dfb3282fb34a.jpg',
+                'https://i.pinimg.com/564x/2c/d0/76/2cd076de1e3f4de5aa86ea506656496d.jpg',
+            ]
+        ];
+
+        let currentLevel = 0;
+        let score = 0;
+        let firstCard, secondCard;
+        let hasFlippedCard = false;
+        let lockBoard = false;
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const gameBoard = document.getElementById('gameBoard');
+            const resetButton = document.getElementById('resetButton');
+            const nextLevelButton = document.getElementById('nextLevelButton');
+            const levelElement = document.getElementById('level');
+            const scoreElement = document.getElementById('score');
+            const flipSound = document.getElementById('flipSound');
+            const matchSound = document.getElementById('matchSound');
+
+            function createBoard(level) {
+                const images = [...levels[level], ...levels[level]];
+                shuffle(images);
+                images.forEach((image) => {
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+                    card.dataset.image = image;
+
+                    const cardImage = document.createElement('img');
+                    cardImage.src = image;
+
+                    card.appendChild(cardImage);
+                    card.addEventListener('click', flipCard);
+                    gameBoard.appendChild(card);
+                });
+            }
+
+            function shuffle(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+            }
+
+            function flipCard() {
+                if (lockBoard) return;
+                if (this === firstCard) return;
+
+                this.classList.add('flipped');
+                flipSound.currentTime = 0;
+                flipSound.play();
+
+                if (!hasFlippedCard) {
+                    hasFlippedCard = true;
+                    firstCard = this;
+                    return;
+                }
+
+                secondCard = this;
+                checkForMatch();
+            }
+
+            function checkForMatch() {
+                if (firstCard.dataset.image === secondCard.dataset.image) {
+                    disableCards();
+                    matchSound.currentTime = 0;
+                    matchSound.play();
+                    score += 10;
+                    scoreElement.textContent = score;
+                    if (checkIfLevelComplete()) {
+                        setTimeout(nextLevel, 1000);
+                    }
+                } else {
+                    unflipCards();
+                }
+            }
+
+            function disableCards() {
+                firstCard.removeEventListener('click', flipCard);
+                secondCard.removeEventListener('click', flipCard);
+                resetBoard();
+            }
+
+            function unflipCards() {
+                lockBoard = true;
+                const wrongSound = document.getElementById('wrongSound');
+                wrongSound.currentTime = 0;
+                wrongSound.play();
+                setTimeout(() => {
+                    firstCard.classList.remove('flipped');
+                    secondCard.classList.remove('flipped');
+                    resetBoard();
+                }, 1000);
+            }
+
+            function resetBoard() {
+                [hasFlippedCard, lockBoard] = [false, false];
+                [firstCard, secondCard] = [null, null];
+            }
+
+            function checkIfLevelComplete() {
+                return document.querySelectorAll('.card:not(.flipped)').length === 0
+            }
+
+            async function saveScoreToFirestore() {
+                try {
+                    const docRef = await addDoc(collection(db, "scores"), {
+                        score: score,
+                        timestamp: new Date()
+                    });
+                    console.log("Document written with ID: ", docRef.id);
+                } catch (e) {
+                    console.error("Error adding document: ", e);
+                }
+            }
+
+            function nextLevel() {
+                currentLevel++;
+                if (currentLevel < levels.length) {
+                    resetGame();
+                } else {
+                    alert('Congratulations! You have completed all levels!');
+                    saveScoreToFirestore();
+                    resetButton.style.display = 'none';
+                    nextLevelButton.style.display = 'none';
+                }
+            }
+
+            function resetGame() {
+                gameBoard.innerHTML = '';
+                createBoard(currentLevel);
+                levelElement.textContent = currentLevel + 1;
+                scoreElement.textContent = score;
+            }
+
+            resetButton.addEventListener('click', function() {
+                currentLevel = 0;
+                score = 0;
+                resetButton.style.display = 'block';
+                nextLevelButton.style.display = 'block';
+                resetGame();
+            });
+
+            nextLevelButton.addEventListener('click', function() {
+                nextLevel();
+            });
+
+            resetGame();
+        });
+    </script>
+</body>
+</html>
