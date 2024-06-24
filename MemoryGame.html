@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memory Game</title>
     <link rel="stylesheet" href="MemoryGame.css">
-    
 </head>
 <body>
     <a href="Play.html"><button class="kembali-btn"><i class="fas fa-arrow-left"></i></button></a>
@@ -13,21 +12,22 @@
         <h1>Memory Game</h1>
         <div id="status">
             <span>Level: <span id="level">1</span></span>
+            <span>Time: <span id="timer">30</span> seconds</span>
             <span>Score: <span id="score">0</span></span>
         </div>
         <div class="game-board" id="gameBoard">
         </div>
-        <button id="resetButton">Restart Game</button>
-        <button id="nextLevelButton">Next Level</button>
+        <table>
+            <tr>
+                <td><button id="resetButton">Restart Game</button></td>
+                <td><button id="nextLevelButton">Next Level</button></td>
+            </tr>
+        </table>
     </div>
     <script src="MemoryGame.js"></script>
-    
     <audio id="flipSound" src="pick-92276.mp3"></audio>
     <audio id="matchSound" src="correct-6033.mp3"></audio>
     <audio id="wrongSound" src="buzzer-or-wrong-answer-20582.mp3"></audio>
-
-    
     <script src="audio.js"></script>
-    
 </body>
 </html>

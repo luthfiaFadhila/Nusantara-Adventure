@@ -40,50 +40,52 @@ h1 {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
-#status {
-    margin-top: 10px;
-    font-size: 18px;
+#header {
     display: flex;
     justify-content: space-between;
-    padding: 0 20px;
+    margin-bottom: 20px;
     width: 100%;
+}
+
+#level, #timer, #score {
+    font-size: 18px;
     color: #8b4513;
 }
 
-.game-board {
-    display: grid;
-    grid-template-columns: repeat(4, 100px);
-    grid-gap: 10px;
-    margin-top: 20px;
-}
-
-.card {
-    width: 100px;
-    height: 100px;
-    border-radius: 10px;
-    background: #ddd;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: transform 0.3s;
-    position: relative;
-}
-
-.card img {
+#question-container {
+    margin-bottom: 20px;
     width: 100%;
-    height: 100%;
+    text-align: center;
+}
+
+#question-image {
+    width: 250px;
+    height: 170px;
     border-radius: 10px;
-    display: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.card.flipped img {
+.option-button {
     display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
-.card.flipped {
-    background: white;
-    transform: rotateY(180deg);
+.option-button:hover {
+    background-color: #0056b3;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
 }
 
 button {

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Game</title>
+    <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Quiz</h1>
+        <div id="header">
+            <div id="level">Level: 1</div>
+            <div id="timer">Time: 30</div>
+            <div id="score">Score: 0</div>
+        </div>
+        <div id="question-container">
+            <img id="question-image" src="" alt="Question Image">
+            <div id="options-container">
+                <button class="option-button" data-answer="a">A</button>
+                <button class="option-button" data-answer="b">B</button>
+                <button class="option-button" data-answer="c">C</button>
+                <button class="option-button" data-answer="d">D</button>
+            </div>
+        </div>
+        <div class="button-container">
+            <button id="resetButton">Restart Game</button>
+            <button id="nextLevelButton">Next Level</button>
+        </div>
+    </div>
+    <script src="quiz.js"></script>
+</body>
+</html>

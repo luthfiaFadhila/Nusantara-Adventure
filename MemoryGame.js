@@ -1,4 +1,3 @@
-
 const levels = [
     [
         'https://i.pinimg.com/564x/2c/d0/76/2cd076de1e3f4de5aa86ea506656496d.jpg',
@@ -31,6 +30,8 @@ let score = 0;
 let firstCard, secondCard;
 let hasFlippedCard = false;
 let lockBoard = false;
+let time = 30;
+let timer;
 
 document.addEventListener("DOMContentLoaded", function() {
     const gameBoard = document.getElementById('gameBoard');
@@ -38,8 +39,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const nextLevelButton = document.getElementById('nextLevelButton');
     const levelElement = document.getElementById('level');
     const scoreElement = document.getElementById('score');
+    const timerElement = document.getElementById('timer');
     const flipSound = document.getElementById('flipSound');
     const matchSound = document.getElementById('matchSound');
+    const wrongSound = document.getElementById('wrongSound');
 
     function createBoard(level) {
         const images = [...levels[level], ...levels[level]];
@@ -56,6 +59,7 @@ document.addEventListener("DOMContentLoaded", function() {
             card.addEventListener('click', flipCard);
             gameBoard.appendChild(card);
         });
+        resetTimer();
     }
 
     function shuffle(array) {
@@ -106,7 +110,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function unflipCards() {
         lockBoard = true;
-        const wrongSound = document.getElementById('wrongSound');
         wrongSound.currentTime = 0;
         wrongSound.play();
         setTimeout(() => {
@@ -115,7 +118,6 @@ document.addEventListener("DOMContentLoaded", function() {
             resetBoard();
         }, 1000);
     }
-    
 
     function resetBoard() {
         [hasFlippedCard, lockBoard] = [false, false];
@@ -123,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function checkIfLevelComplete() {
-        return document.querySelectorAll('.card:not(.flipped)').length === 0
+        return document.querySelectorAll('.card:not(.flipped)').length === 0;
     }
 
     function nextLevel() {
@@ -138,10 +140,26 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function resetGame() {
+        clearInterval(timer);
         gameBoard.innerHTML = '';
         createBoard(currentLevel);
         levelElement.textContent = currentLevel + 1;
         scoreElement.textContent = score;
+    }
+
+    function resetTimer() {
+        clearInterval(timer);
+        time = 30;
+        timerElement.textContent = time;
+        timer = setInterval(() => {
+            time--;
+            timerElement.textContent = time;
+            if (time === 0) {
+                clearInterval(timer);
+                alert('Time is up! Game Over!');
+                resetGame();
+            }
+        }, 1000);
     }
 
     resetButton.addEventListener('click', function() {
